@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: block-buster
+    version: 7.1.0
+    env: dev
+  name: block-buster
+  namespace: demo-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: block-buster
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: block-buster
+        api: downward
+        usage: global
+        env: dev
+        version: 7.1.0
+    spec:
+      containers:
+        - name: app
+          image: siddharth67/block-buster-dev:7.1.0
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "10Mi"
+              cpu: "10m"
