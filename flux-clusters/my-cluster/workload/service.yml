@@ -6,7 +6,7 @@ metadata:
   labels:
     app: block-buster
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: block-buster
     version: 7.1.0
